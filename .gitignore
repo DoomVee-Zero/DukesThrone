@@ -1,0 +1,19 @@
+# Secrets
+**/.env
+
+# Database
+dt-database/
+
+# Logs
+**/logs/
+**/*.log
+
+# Modules / Dependencies
+**/node_modules/
+
+# Compiled
+**/dist/
+
+# IDE/Editor
+**/.vscode/
+**/*.code-workspace

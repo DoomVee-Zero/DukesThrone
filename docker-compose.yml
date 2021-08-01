@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:13.3-alpine
+    container_name: dt-db
+    ports: 
+      - "9001:5432"
+    volumes: 
+      - "./dt-database/data:/var/lib/postgresql/data"
+    env_file: ".env"
+    environment: 
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_DB: "${POSTGRES_DB}"
+    command: "postgres; pg_ctl -D /var/lib/postgresql/data -l logfile start"
