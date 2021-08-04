@@ -8,6 +8,7 @@ specifiers:
   '@nestjs/platform-express': ^8.0.0
   '@nestjs/schematics': ^8.0.0
   '@nestjs/testing': ^8.0.0
+  '@prisma/client': ^2.28.0
   '@types/express': ^4.17.13
   '@types/jest': ^26.0.24
   '@types/node': ^16.0.0
@@ -19,6 +20,7 @@ specifiers:
   eslint-plugin-prettier: ^3.4.0
   jest: 27.0.6
   prettier: ^2.3.2
+  prisma: ^2.28.0
   reflect-metadata: ^0.1.13
   rimraf: ^3.0.2
   rxjs: ^7.2.0
@@ -33,6 +35,7 @@ dependencies:
   '@nestjs/common': 8.0.5_486826780eeff986d3746a62b5df4b6b
   '@nestjs/core': 8.0.5_d6498dfd91b25aedfef997b6a59d31dc
   '@nestjs/platform-express': 8.0.5_718ee7bbed66880b09432508ad4ff39f
+  '@prisma/client': 2.28.0_prisma@2.28.0
   reflect-metadata: 0.1.13
   rimraf: 3.0.2
   rxjs: 7.3.0
@@ -53,6 +56,7 @@ devDependencies:
   eslint-plugin-prettier: 3.4.0_5a48a349ffec60f5257b5f148f5199c3
   jest: 27.0.6_ts-node@10.1.0
   prettier: 2.3.2
+  prisma: 2.28.0
   supertest: 6.1.4
   ts-jest: 27.0.4_52cc4273aa16028085013af47e479e10
   ts-loader: 9.2.4_typescript@4.3.5
@@ -1012,6 +1016,29 @@ packages:
       consola: 2.15.3
       node-fetch: 2.6.1
     dev: false
+
+  /@prisma/client/2.28.0_prisma@2.28.0:
+    resolution: {integrity: sha512-iwdxpy0Nz8N40MnhdlRvhZOBk8+GawpEsY5FU8Tfw1k9rvIeTAi+wBHrqhY8bXq6pneZkzrdQ1Hj3tqkrbRmoQ==}
+    engines: {node: '>=12.2'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 2.28.0-17.89facabd0366f63911d089156a7a70125bfbcd27
+      prisma: 2.28.0
+    dev: false
+
+  /@prisma/engines-version/2.28.0-17.89facabd0366f63911d089156a7a70125bfbcd27:
+    resolution: {integrity: sha512-BWTvF1mGxjG8EtG215uhxdeW5Uf5aiH4xhfzcFPFC3Ux5BdEM1uEBrLIixX67mI+ZNhqNZSBPf0DSf2I1IsaZw==}
+    dev: false
+
+  /@prisma/engines/2.28.0-17.89facabd0366f63911d089156a7a70125bfbcd27:
+    resolution: {integrity: sha512-r3/EnwKjbu2qz13I98hPQQdeFrOEcwdjlrB9CcoSoqRCjSHLnpdVMUvRfYuRKIoEF7p941R7/Fov0/CxOLF/MQ==}
+    requiresBuild: true
+    dev: true
 
   /@sinonjs/commons/1.8.3:
     resolution: {integrity: sha512-xkNcLAn/wZaX14RPlwizcKicDk9G3F8m2nU3L7Ukm5zBgTwiT0wsoFAHx9Jq56fJA1z/7uKGtCRu16sOUCLIHQ==}
@@ -4538,6 +4565,15 @@ packages:
       ansi-regex: 5.0.0
       ansi-styles: 5.2.0
       react-is: 17.0.2
+    dev: true
+
+  /prisma/2.28.0:
+    resolution: {integrity: sha512-f83KPLy3xk07KMY4e5otNwP2I+GsdftjOfu3e8snXylnyAC1oEpRZNe7rmONr0vAI+Qgz3LFRArhWUE/dFjKIA==}
+    engines: {node: '>=12.2'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 2.28.0-17.89facabd0366f63911d089156a7a70125bfbcd27
     dev: true
 
   /process-nextick-args/2.0.1:
