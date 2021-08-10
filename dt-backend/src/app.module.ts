@@ -9,7 +9,7 @@ import { AuditLogModule } from './model/audit-log/audit-log.module';
   imports: [
     UserModule,
     GraphQLModule.forRoot({
-      autoSchemaFile: `${process.cwd() + '/src/schema.gql'}`, 
+      autoSchemaFile: `${process.cwd() + '/src/schema.gql'}`,
     }),
     AuditLogModule,
   ],

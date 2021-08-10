@@ -2,7 +2,7 @@ import { Field, ID, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class AuditLog {
-  @Field(type => ID)
+  @Field((type) => ID)
   id: string;
 
   @Field()
@@ -19,5 +19,4 @@ export class AuditLog {
 
   @Field()
   i18nKey: string;
-
 }

@@ -3,7 +3,7 @@ import { prisma } from '../../main';
 
 @Injectable()
 export class AuditLogService {
-  async getAuditLogs () {
+  async getAuditLogs() {
     return prisma.auditLog.findMany();
   }
 }
