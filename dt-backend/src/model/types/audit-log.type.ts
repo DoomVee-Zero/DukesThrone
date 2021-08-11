@@ -1,16 +1,22 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class User {
+export class AuditLog {
   @Field((type) => ID)
   id: string;
 
   @Field()
-  username: string;
+  userId: string;
 
   @Field()
-  password: string;
+  time: Date;
 
   @Field()
-  mail: string;
+  ip: string;
+
+  @Field()
+  client: string;
+
+  @Field()
+  i18nKey: string;
 }
