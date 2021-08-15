@@ -17,3 +17,4 @@ dt-database/
 # IDE/Editor
 **/.vscode/
 **/*.code-workspace
+.idea/

@@ -6,6 +6,8 @@ import { UserModule } from './model/user/user.module';
 import { AuditLogModule } from './model/audit-log/audit-log.module';
 import { EmpireModule } from './model/empire/empire.module';
 
+import { LoggerModule } from './services/logger/logger.module';
+
 @Module({
   imports: [
     UserModule,
@@ -13,7 +15,11 @@ import { EmpireModule } from './model/empire/empire.module';
       autoSchemaFile: `${process.cwd() + '/src/schema.gql'}`,
     }),
     AuditLogModule,
+
     EmpireModule,
+
+    LoggerModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],
