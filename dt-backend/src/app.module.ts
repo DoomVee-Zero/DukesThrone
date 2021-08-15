@@ -19,7 +19,6 @@ import { LoggerModule } from './services/logger/logger.module';
     EmpireModule,
 
     LoggerModule,
-
   ],
   controllers: [AppController],
   providers: [AppService],

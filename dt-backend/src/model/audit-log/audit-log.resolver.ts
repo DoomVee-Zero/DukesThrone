@@ -6,8 +6,8 @@ import { AuditLogService } from './audit-log.service';
 export class AuditLogResolver {
   constructor(private readonly auditlogService: AuditLogService) {}
 
-    @Query((_returns) => [AuditLog])
-    async auditlogs(): Promise<AuditLog[]> {
-      return await this.auditlogService.getAuditLogs();
+  @Query((_returns) => [AuditLog])
+  async auditlogs(): Promise<AuditLog[]> {
+    return await this.auditlogService.getAuditLogs();
   }
 }

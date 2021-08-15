@@ -32,25 +32,25 @@ export class Empire {
   @Field()
   class: string;
 
-//  TODO: Complex Fields
-//  @Field()
-//  armory: any;
+  //  TODO: Complex Fields
+  //  @Field()
+  //  armory: any;
 
-//  @Field()
-//  population: any;
+  //  @Field()
+  //  population: any;
 
-//  @Field()
-//  attributes: any;
+  //  @Field()
+  //  attributes: any;
 
-//  @Field()
-//  finance: Finance?;
+  //  @Field()
+  //  finance: Finance?;
 
-//  @Field()
-//  attacks: WarLogEntry[];
+  //  @Field()
+  //  attacks: WarLogEntry[];
 
-//  @Field()
-//  defenses: WarLogEntry[];
+  //  @Field()
+  //  defenses: WarLogEntry[];
 
-//  @Field()
-//  structures: Structure[];
+  //  @Field()
+  //  structures: Structure[];
 }
