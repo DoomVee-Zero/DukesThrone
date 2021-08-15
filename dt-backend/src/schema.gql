@@ -23,7 +23,21 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Empire {
+  id: ID!
+  userId: String!
+  bannerId: Int!
+  description: String!
+  level: Int!
+  experience: Int!
+  attributes: Int!
+  turnsAvailable: Int!
+  race: String!
+  class: String!
+}
+
 type Query {
   users: [User!]!
   auditlogs: [AuditLog!]!
+  empires: [Empire!]!
 }
