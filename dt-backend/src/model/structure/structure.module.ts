@@ -3,6 +3,6 @@ import { StructureService } from './structure.service';
 import { StructureResolver } from './structure.resolver';
 
 @Module({
-  providers: [StructureService, StructureResolver]
+  providers: [StructureService, StructureResolver],
 })
 export class StructureModule {}

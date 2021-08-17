@@ -2,12 +2,12 @@ import { Field, ID, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class Structure {
-  @Field(type => ID)
+  @Field((type) => ID)
   id: string;
 
   @Field()
   empireId: string;
- 
+
   @Field()
   i18nKey: string;
 

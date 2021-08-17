@@ -3,6 +3,6 @@ import { VaultTransactionService } from './vault-transaction.service';
 import { VaultTransactionResolver } from './vault-transaction.resolver';
 
 @Module({
-  providers: [VaultTransactionService, VaultTransactionResolver]
+  providers: [VaultTransactionService, VaultTransactionResolver],
 })
 export class VaultTransactionModule {}

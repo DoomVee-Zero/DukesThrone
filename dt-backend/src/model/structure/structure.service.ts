@@ -4,6 +4,6 @@ import { prisma } from '../../main';
 @Injectable()
 export class StructureService {
   async getStructures() {
-    return prisma.structure.findMany();  
+    return prisma.structure.findMany();
   }
 }

@@ -2,17 +2,16 @@ import { Field, ID, ObjectType, Float, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class Finance {
-
-  @Field(type => ID)
+  @Field((type) => ID)
   id: string;
 
   @Field((type) => Float)
-  gold: number ;
+  gold: number;
 
-  @Field(type => Float)
+  @Field((type) => Float)
   vaultGold: number;
 
-  @Field()  
+  @Field()
   empireId: string;
 
   /*TODO: resolve complex modules
@@ -22,5 +21,4 @@ export class Finance {
   @Field()
   transactions: VaultTransaction[];
   */
-
 }

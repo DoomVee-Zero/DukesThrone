@@ -5,5 +5,5 @@ import { prisma } from '../../main';
 export class FinanceService {
   async getFinances() {
     return prisma.user.findMany();
-  }  
+  }
 }

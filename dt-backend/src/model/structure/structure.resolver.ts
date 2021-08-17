@@ -1,6 +1,6 @@
 import { Resolver, Query } from '@nestjs/graphql';
 import { Structure } from '../types/structure.type';
-import { StructureService } from './structure.service'
+import { StructureService } from './structure.service';
 
 @Resolver((of) => Structure)
 export class StructureResolver {
