@@ -36,8 +36,41 @@ type Empire {
   class: String!
 }
 
+type Structure {
+  id: ID!
+  empireId: String!
+  i18nKey: String!
+  category: String!
+}
+
+type Finance {
+  id: ID!
+  gold: Float!
+  vaultGold: Float!
+  empireId: String!
+}
+
+type VaultTransaction {
+  id: ID!
+  financeId: String!
+  i18nKey: String!
+  amount: Float!
+}
+
+type WarLogEntry {
+  id: ID!
+  battleType: String!
+  attackerID: String!
+  defenderID: String!
+  turns: Int!
+}
+
 type Query {
   users: [User!]!
   auditlogs: [AuditLog!]!
   empires: [Empire!]!
+  structures: [Structure!]!
+  finances: [Finance!]!
+  vaultTransactions: [VaultTransaction!]!
+  warLogEntries: [WarLogEntry!]!
 }

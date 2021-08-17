@@ -7,6 +7,10 @@ import { AuditLogModule } from './model/audit-log/audit-log.module';
 import { EmpireModule } from './model/empire/empire.module';
 
 import { LoggerModule } from './services/logger/logger.module';
+import { StructureModule } from './model/structure/structure.module';
+import { FinanceModule } from './model/finance/finance.module';
+import { VaultTransactionModule } from './model/vault-transaction/vault-transaction.module';
+import { WarLogEntryModule } from './model/war-log-entry/war-log-entry.module';
 
 @Module({
   imports: [
@@ -19,6 +23,14 @@ import { LoggerModule } from './services/logger/logger.module';
     EmpireModule,
 
     LoggerModule,
+
+    StructureModule,
+
+    FinanceModule,
+
+    VaultTransactionModule,
+
+    WarLogEntryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
