@@ -28,8 +28,8 @@ model AuditLog {
 
 model Finance {
   id           String             @id @default(uuid())
-  gold         Decimal            @default(0)
-  vaultGold    Decimal            @default(0)
+  gold         Float              @default(0)
+  vaultGold    Float              @default(0)
   transactions VaultTransaction[]
   empireId     String             @map("empire_id")
   empire       Empire             @relation(fields: [empireId], references: [id])
@@ -40,7 +40,7 @@ model VaultTransaction {
   financeId String  @map("finance_id")
   finance   Finance @relation(fields: [financeId], references: [id])
   i18nKey   String  @map("i18n_key")
-  amount    Decimal
+  amount    Float
 }
 
 model Empire {

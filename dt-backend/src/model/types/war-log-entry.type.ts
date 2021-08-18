@@ -2,7 +2,7 @@ import { Field, ID, ObjectType, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class WarLogEntry {
-  @Field((type) => ID)
+  @Field((_type) => ID)
   id: string;
 
   @Field()
@@ -14,7 +14,7 @@ export class WarLogEntry {
   @Field()
   defenderID: string;
 
-  @Field((type) => Int)
+  @Field((_type) => Int)
   turns: number;
 
   /*TODO: resolve complex types

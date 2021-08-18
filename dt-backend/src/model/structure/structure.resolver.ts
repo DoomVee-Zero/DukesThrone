@@ -2,12 +2,12 @@ import { Resolver, Query } from '@nestjs/graphql';
 import { Structure } from '../types/structure.type';
 import { StructureService } from './structure.service';
 
-@Resolver((of) => Structure)
+@Resolver((_of) => Structure)
 export class StructureResolver {
   constructor(private readonly structureService: StructureService) {}
 
-  @Query((returns) => [Structure])
-  async structures() {
+  @Query((_returns) => [Structure])
+  async structures(): Promise<Structure[]> {
     return await this.structureService.getStructures();
   }
 }

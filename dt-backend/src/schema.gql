@@ -2,13 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
-  id: ID!
-  username: String!
-  password: String!
-  mail: String!
-}
-
 type AuditLog {
   id: ID!
   userId: String!
@@ -34,6 +27,15 @@ type Empire {
   turnsAvailable: Int!
   race: String!
   class: String!
+}
+
+type User {
+  id: ID!
+  username: String!
+  password: String!
+  mail: String!
+  audit: [AuditLog!]!
+  empire: Empire
 }
 
 type Structure {

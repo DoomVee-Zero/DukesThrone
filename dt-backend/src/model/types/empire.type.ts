@@ -2,28 +2,28 @@ import { Field, ID, ObjectType, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class Empire {
-  @Field((type) => ID)
+  @Field((_type) => ID)
   id: string;
 
   @Field()
   userId: string;
 
-  @Field((type) => Int)
+  @Field((_type) => Int)
   bannerId: number;
 
   @Field()
   description?: string;
 
-  @Field((type) => Int)
+  @Field((_type) => Int)
   level: number;
 
-  @Field((type) => Int)
+  @Field((_type) => Int)
   experience: number;
 
-  @Field((type) => Int)
+  @Field((_type) => Int)
   attributes: any;
 
-  @Field((type) => Int)
+  @Field((_type) => Int)
   turnsAvailable: number;
 
   @Field()

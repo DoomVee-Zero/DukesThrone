@@ -4,10 +4,10 @@ import { AuditLogService } from './audit-log.service';
 
 @Resolver((_of) => AuditLog)
 export class AuditLogResolver {
-  constructor(private readonly auditlogService: AuditLogService) {}
+  constructor(private readonly auditLogService: AuditLogService) {}
 
   @Query((_returns) => [AuditLog])
   async auditlogs(): Promise<AuditLog[]> {
-    return await this.auditlogService.getAuditLogs();
+    return await this.auditLogService.getAuditLogs();
   }
 }

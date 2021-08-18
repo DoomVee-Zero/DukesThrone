@@ -2,12 +2,12 @@ import { Resolver, Query } from '@nestjs/graphql';
 import { Empire } from '../types/empire.type';
 import { EmpireService } from './empire.service';
 
-@Resolver((of) => Empire)
+@Resolver((_of) => Empire)
 export class EmpireResolver {
   constructor(private readonly empireService: EmpireService) {}
 
-  @Query((returns) => [Empire])
-  async empires() {
+  @Query((_returns) => [Empire])
+  async empires(): Promise<Empire[]> {
     return await this.empireService.getEmpires();
   }
 }

@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { prisma } from '../../main';
+import { Finance } from "../types/finance.type";
 
 @Injectable()
 export class FinanceService {
-  async getFinances() {
-    return prisma.user.findMany();
+  async getFinances(): Promise<Finance[]> {
+    return prisma.finance.findMany();
   }
 }
