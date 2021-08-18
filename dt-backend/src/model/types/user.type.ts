@@ -1,8 +1,10 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { AuditLog } from "./audit-log.type";
+import { Empire } from "./empire.type";
 
 @ObjectType()
 export class User {
-  @Field((type) => ID)
+  @Field((_type) => ID)
   id: string;
 
   @Field()
@@ -13,4 +15,10 @@ export class User {
 
   @Field()
   mail: string;
+
+  @Field((_type) => [AuditLog])
+  audit: AuditLog[];
+
+  @Field((_type) => Empire, { nullable: true })
+  empire: Empire | null;
 }
