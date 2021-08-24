@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Empire } from './empire.type';
 
 @ObjectType()
 export class Structure {
@@ -6,19 +7,11 @@ export class Structure {
   id: string;
 
   @Field()
-  empireId: string;
-
-  @Field()
   i18nKey: string;
 
   @Field()
   category: string;
 
-  /*TODO: fix: complex types
-  @Field()
-  empire: Empire;
-
-  @Field()
-  attributes: Json;
-  */
+  @Field((_type) => Empire, { nullable: true })
+  empire?: Empire;
 }

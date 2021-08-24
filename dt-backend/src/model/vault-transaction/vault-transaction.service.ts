@@ -5,6 +5,10 @@ import { VaultTransaction } from "../types/vault-transaction.type";
 @Injectable()
 export class VaultTransactionService {
   async getVaultTransactions(): Promise<VaultTransaction[]> {
-    return prisma.vaultTransaction.findMany();
+    return prisma.vaultTransaction.findMany({
+      include: {
+        finance: true,
+      },
+    });
   }
 }

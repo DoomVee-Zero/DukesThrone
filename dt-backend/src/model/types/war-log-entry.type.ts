@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType, Int } from '@nestjs/graphql';
+import { Empire } from './empire.type';
 
 @ObjectType()
 export class WarLogEntry {
@@ -8,24 +9,12 @@ export class WarLogEntry {
   @Field()
   battleType: string;
 
-  @Field()
-  attackerID: string;
-
-  @Field()
-  defenderID: string;
-
   @Field((_type) => Int)
   turns: number;
 
-  /*TODO: resolve complex types
+  @Field((_type) => Empire, { nullable: true })
+  attacker?: Empire;
 
-  @Field()
-  details: Json;
-
-  @Field()
-  attacker:   Empire; 
-
-  @Field() 
-  defender:   Empire;
-  */
+  @Field((_type) => Empire, { nullable: true })
+  defender?: Empire;
 }

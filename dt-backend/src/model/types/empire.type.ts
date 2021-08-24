@@ -1,4 +1,7 @@
 import { Field, ID, ObjectType, Int } from '@nestjs/graphql';
+import { WarLogEntry } from './war-log-entry.type';
+import { Finance } from './finance.type';
+import { Structure } from './structure.type';
 
 @ObjectType()
 export class Empire {
@@ -32,25 +35,15 @@ export class Empire {
   @Field()
   class: string;
 
-  //  TODO: Complex Fields
-  //  @Field()
-  //  armory: any;
+   @Field((_type) => Finance, { nullable: true })
+   finance?: Finance;
 
-  //  @Field()
-  //  population: any;
+   @Field((_type) => [WarLogEntry], { nullable: true })
+   attacks?: WarLogEntry[];
 
-  //  @Field()
-  //  attributes: any;
+   @Field((_type) => [WarLogEntry], { nullable: true })
+   defenses?: WarLogEntry[];
 
-  //  @Field()
-  //  finance: Finance?;
-
-  //  @Field()
-  //  attacks: WarLogEntry[];
-
-  //  @Field()
-  //  defenses: WarLogEntry[];
-
-  //  @Field()
-  //  structures: Structure[];
+   @Field((_type) => [Structure], { nullable: true })
+   structures?: Structure[];
 }

@@ -9,12 +9,43 @@ type AuditLog {
   ip: String!
   client: String!
   i18nKey: String!
+  user: User
 }
 
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+type WarLogEntry {
+  id: ID!
+  battleType: String!
+  turns: Int!
+  attacker: Empire
+  defender: Empire
+}
+
+type VaultTransaction {
+  id: ID!
+  i18nKey: String!
+  amount: Float!
+  finance: Finance
+}
+
+type Finance {
+  id: ID!
+  gold: Float!
+  vaultGold: Float!
+  empire: Empire
+  transactions: [VaultTransaction!]
+}
+
+type Structure {
+  id: ID!
+  i18nKey: String!
+  category: String!
+  empire: Empire
+}
 
 type Empire {
   id: ID!
@@ -27,6 +58,10 @@ type Empire {
   turnsAvailable: Int!
   race: String!
   class: String!
+  finance: Finance
+  attacks: [WarLogEntry!]
+  defenses: [WarLogEntry!]
+  structures: [Structure!]
 }
 
 type User {
@@ -36,35 +71,6 @@ type User {
   mail: String!
   audit: [AuditLog!]!
   empire: Empire
-}
-
-type Structure {
-  id: ID!
-  empireId: String!
-  i18nKey: String!
-  category: String!
-}
-
-type Finance {
-  id: ID!
-  gold: Float!
-  vaultGold: Float!
-  empireId: String!
-}
-
-type VaultTransaction {
-  id: ID!
-  financeId: String!
-  i18nKey: String!
-  amount: Float!
-}
-
-type WarLogEntry {
-  id: ID!
-  battleType: String!
-  attackerID: String!
-  defenderID: String!
-  turns: Int!
 }
 
 type Query {

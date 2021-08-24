@@ -20,5 +20,5 @@ export class User {
   audit: AuditLog[];
 
   @Field((_type) => Empire, { nullable: true })
-  empire: Empire | null;
+  empire?: Empire;
 }

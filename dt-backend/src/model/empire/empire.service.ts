@@ -5,6 +5,13 @@ import { Empire } from "../types/empire.type";
 @Injectable()
 export class EmpireService {
   async getEmpires(): Promise<Empire[]> {
-    return prisma.empire.findMany();
+    return prisma.empire.findMany({
+      include: {
+        finance: true,
+        attacks: true,
+        defenses: true,
+        structures: true,
+      },
+    });
   }
 }

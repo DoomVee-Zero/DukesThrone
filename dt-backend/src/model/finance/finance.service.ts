@@ -5,6 +5,11 @@ import { Finance } from "../types/finance.type";
 @Injectable()
 export class FinanceService {
   async getFinances(): Promise<Finance[]> {
-    return prisma.finance.findMany();
+    return prisma.finance.findMany({
+      include: {
+        empire: true,
+        transactions: true,
+      },
+    });
   }
 }

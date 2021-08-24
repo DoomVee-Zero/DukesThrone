@@ -5,6 +5,10 @@ import { prisma } from '../../main';
 @Injectable()
 export class AuditLogService {
   async getAuditLogs(): Promise<AuditLog[]> {
-    return prisma.auditLog.findMany();
+    return prisma.auditLog.findMany({
+      include: {
+        user: true,
+      },
+    });
   }
 }

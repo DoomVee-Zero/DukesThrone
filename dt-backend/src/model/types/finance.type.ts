@@ -1,4 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Empire } from './empire.type';
+import { VaultTransaction } from './vault-transaction.type';
 
 @ObjectType()
 export class Finance {
@@ -11,14 +13,9 @@ export class Finance {
   @Field()
   vaultGold: number;
 
-  @Field()
-  empireId: string;
+  @Field((_type) => Empire, { nullable: true })
+  empire?: Empire;
 
-  /*TODO: resolve complex modules
-  @Field()
-  empire: Empire;
-
-  @Field()
-  transactions: VaultTransaction[];
-  */
+  @Field((_type) => [VaultTransaction], { nullable: true })
+  transactions?: VaultTransaction[];
 }
