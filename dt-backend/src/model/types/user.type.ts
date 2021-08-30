@@ -1,6 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { AuditLog } from "./audit-log.type";
-import { Empire } from "./empire.type";
+import { AuditLog } from './audit-log.type';
+import { Empire } from './empire.type';
 
 @ObjectType()
 export class User {

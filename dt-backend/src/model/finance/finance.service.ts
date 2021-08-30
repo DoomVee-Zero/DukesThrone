@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { prisma } from '../../main';
-import { Finance } from "../types/finance.type";
+import { Finance } from '../types/finance.type';
 import { Prisma } from '@prisma/client';
 
 type GetFinances = Prisma.FinanceGetPayload<{
-  include: { transactions: true }
-}>
+  include: { transactions: true };
+}>;
 
 @Injectable()
 export class FinanceService {
@@ -17,4 +17,3 @@ export class FinanceService {
     });
   }
 }
-

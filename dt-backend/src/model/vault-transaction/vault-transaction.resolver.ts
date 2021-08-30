@@ -3,7 +3,7 @@ import { VaultTransaction } from '../types/vault-transaction.type';
 import { VaultTransactionService } from './vault-transaction.service';
 import { Prisma } from '@prisma/client';
 
-type GetVaultTransactions = Prisma.VaultTransactionGetPayload <{}>
+type GetVaultTransactions = Prisma.VaultTransactionGetPayload<{}>;
 
 @Resolver((_of) => VaultTransaction)
 export class VaultTransactionResolver {

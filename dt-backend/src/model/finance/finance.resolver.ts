@@ -3,11 +3,11 @@ import { Finance } from '../types/finance.type';
 import { FinanceService } from './finance.service';
 import { Prisma } from '@prisma/client';
 
-type GetFinances = Prisma.FinanceGetPayload <{
+type GetFinances = Prisma.FinanceGetPayload<{
   include: {
-  	transactions: true,
-  	}
-}>
+    transactions: true;
+  };
+}>;
 
 @Resolver((_of) => Finance)
 export class FinanceResolver {

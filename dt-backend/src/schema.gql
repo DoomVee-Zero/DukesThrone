@@ -20,6 +20,8 @@ type WarLogEntry {
   id: ID!
   battleType: String!
   turns: Int!
+  attacker: Empire!
+  defender: Empire!
 }
 
 type VaultTransaction {

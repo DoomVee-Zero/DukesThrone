@@ -3,15 +3,14 @@ import { Empire } from '../types/empire.type';
 import { EmpireService } from './empire.service';
 import { Prisma } from '@prisma/client';
 
-type GetEmpires = Prisma.EmpireGetPayload <{
+type GetEmpires = Prisma.EmpireGetPayload<{
   include: {
-	  finance: true,
-	  attacks: true,
-	  defenses: true,
-	  structures: true,
-	}
-
-}>
+    finance: true;
+    attacks: true;
+    defenses: true;
+    structures: true;
+  };
+}>;
 
 @Resolver((_of) => Empire)
 export class EmpireResolver {

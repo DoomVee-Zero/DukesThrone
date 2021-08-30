@@ -7,7 +7,7 @@ export class Finance {
   @Field((_type) => ID)
   id: string;
 
-  @Field(_type => Float)
+  @Field((_type) => Float)
   gold: number;
 
   @Field()

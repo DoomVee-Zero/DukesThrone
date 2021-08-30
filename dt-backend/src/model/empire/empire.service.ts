@@ -3,15 +3,14 @@ import { prisma } from '../../main';
 import { Empire } from '../types/empire.type';
 import { Prisma } from '@prisma/client';
 
-type GetEmpires = Prisma.EmpireGetPayload <{
-  include: { 
-	  finance: true,
-	  attacks: true,
-	  defenses: true,
-	  structures: true,
-  }  	   
-}>
-
+type GetEmpires = Prisma.EmpireGetPayload<{
+  include: {
+    finance: true;
+    attacks: true;
+    defenses: true;
+    structures: true;
+  };
+}>;
 
 @Injectable()
 export class EmpireService {
