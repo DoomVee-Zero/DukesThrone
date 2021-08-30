@@ -9,7 +9,6 @@ type AuditLog {
   ip: String!
   client: String!
   i18nKey: String!
-  user: User
 }
 
 """
@@ -21,22 +20,18 @@ type WarLogEntry {
   id: ID!
   battleType: String!
   turns: Int!
-  attacker: Empire
-  defender: Empire
 }
 
 type VaultTransaction {
   id: ID!
   i18nKey: String!
   amount: Float!
-  finance: Finance
 }
 
 type Finance {
   id: ID!
   gold: Float!
   vaultGold: Float!
-  empire: Empire
   transactions: [VaultTransaction!]
 }
 
@@ -44,7 +39,6 @@ type Structure {
   id: ID!
   i18nKey: String!
   category: String!
-  empire: Empire
 }
 
 type Empire {

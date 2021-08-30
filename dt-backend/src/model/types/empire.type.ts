@@ -35,15 +35,15 @@ export class Empire {
   @Field()
   class: string;
 
-   @Field((_type) => Finance, { nullable: true })
-   finance?: Finance;
+  @Field((_type) => Finance, { nullable: true })
+  finance?: Finance;
 
-   @Field((_type) => [WarLogEntry], { nullable: true })
-   attacks?: WarLogEntry[];
+  @Field((_type) => [WarLogEntry], { nullable: true })
+  attacks?: WarLogEntry[];
 
-   @Field((_type) => [WarLogEntry], { nullable: true })
-   defenses?: WarLogEntry[];
+  @Field((_type) => [WarLogEntry], { nullable: true })
+  defenses?: WarLogEntry[];
 
-   @Field((_type) => [Structure], { nullable: true })
-   structures?: Structure[];
+  @Field((_type) => [Structure], { nullable: true })
+  structures?: Structure[];
 }

@@ -1,5 +1,4 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Empire } from './empire.type';
 
 @ObjectType()
 export class Structure {
@@ -11,7 +10,4 @@ export class Structure {
 
   @Field()
   category: string;
-
-  @Field((_type) => Empire, { nullable: true })
-  empire?: Empire;
 }
