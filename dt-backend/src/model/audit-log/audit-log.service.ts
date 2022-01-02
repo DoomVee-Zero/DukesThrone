@@ -7,4 +7,9 @@ export class AuditLogService {
   async getAuditLogs(): Promise<AuditLog[]> {
     return prisma.auditLog.findMany();
   }
+
+  getHelloAudit(): string {
+    return "Hello Audit Log!"
+  }
+
 }
