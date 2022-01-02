@@ -1,5 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import {Controller, Get } from '@nestjs/common';
+import { EmpireModule } from "./model/empire/empire.module";
 import { AppService } from './app.service';
+import {Empire} from "./model/types/empire.type";
 
 @Controller()
 export class AppController {
@@ -8,5 +10,10 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  @Get()
+  getEmpire(): string {
+    return this.appService.
   }
 }
