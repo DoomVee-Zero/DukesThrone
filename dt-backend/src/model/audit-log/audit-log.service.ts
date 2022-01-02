@@ -8,8 +8,8 @@ export class AuditLogService {
     return prisma.auditLog.findMany();
   }
 
-  getHelloAudit(): string {
-    return "Hello Audit Log!"
+  getAudit(): string {
+    return "hello audit-log!";
   }
 
 }

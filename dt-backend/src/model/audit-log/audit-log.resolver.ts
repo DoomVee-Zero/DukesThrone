@@ -10,6 +10,4 @@ export class AuditLogResolver {
   async auditLogs(): Promise<AuditLog[]> {
     return await this.auditLogService.getAuditLogs();
   }
-
-
 }
