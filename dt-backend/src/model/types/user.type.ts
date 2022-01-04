@@ -17,7 +17,7 @@ export class User {
   mail: string;
 
   @Field((_type) => [AuditLog])
-  audit: AuditLog[];
+  audit?: AuditLog[];
 
   @Field((_type) => Empire, { nullable: true })
   empire?: Empire;

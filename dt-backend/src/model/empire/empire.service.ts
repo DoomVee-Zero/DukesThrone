@@ -14,6 +14,9 @@ type GetEmpires = Prisma.EmpireGetPayload<{
 
 @Injectable()
 export class EmpireService {
+
+  private readonly empires: Empire[] = [];
+
   async getEmpires(): Promise<GetEmpires[]> {
     return prisma.empire.findMany({
       include: {

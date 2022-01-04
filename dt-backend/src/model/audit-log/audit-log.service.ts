@@ -9,7 +9,7 @@ export class AuditLogService {
   }
 
   getAudit(): string {
-    return "hello audit-log!";
+    return this.getAudit();
   }
 
 }
