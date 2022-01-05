@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "lib": [ "es2021" ],
+    "lib": [
+      "esnext",
+      "ES2021.String",
+    ],
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,

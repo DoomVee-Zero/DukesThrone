@@ -16,8 +16,8 @@ export class UserController {
         return this.userService.createUser(userData);
     }
 
-    @Get('user/:id')
-    get(): Promise<UserModel> {
-        return this.userService.getUser();
+    @Get(':id')
+    getUser(UID): Promise<UserModel> {
+        return this.userService.getUser(UID);
     }
 }

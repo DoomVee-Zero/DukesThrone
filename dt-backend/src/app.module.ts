@@ -9,6 +9,7 @@ import { StructureModule } from './model/structure/structure.module';
 import { FinanceModule } from './model/finance/finance.module';
 import { VaultTransactionModule } from './model/vault-transaction/vault-transaction.module';
 import { WarLogEntryModule } from './model/war-log-entry/war-log-entry.module';
+import {GraphQLModule} from "@nestjs/graphql";
 
 @Module({
   imports: [
@@ -23,6 +24,6 @@ import { WarLogEntryModule } from './model/war-log-entry/war-log-entry.module';
   ],
   controllers: [AppController],
   providers: [AppService],
-
 })
+
 export class AppModule {}

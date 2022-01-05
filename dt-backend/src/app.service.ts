@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { LoggerService } from './services/logger/logger.service';
-import { Empire } from "./model/types/empire.type";
-import {User} from "./model/types/user.type";
 
 @Injectable()
 export class AppService {
@@ -13,5 +11,4 @@ export class AppService {
   getHello(): string {
     return 'Hello World!';
   }
-
 }
