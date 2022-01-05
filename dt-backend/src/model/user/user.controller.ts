@@ -11,7 +11,7 @@ export class UserController {
 
     constructor(private readonly userService: UserService) {}
 
-    @Post('userSignUp')
+    @Post('createuser')
     async signupUser(@Body() userData: { username: string; password: string; mail: string }): Promise<UserModel> {
         return this.userService.createUser(userData);
     }
