@@ -15,10 +15,6 @@ import { WarLogEntryModule } from './model/war-log-entry/war-log-entry.module';
 @Module({
   imports: [
     UserModule,
-    GraphQLModule.forRoot({
-      autoSchemaFile: `${process.cwd() + '/src/schema.gql'}`,
-    }),
-    AuditLogModule,
 
     EmpireModule,
 
