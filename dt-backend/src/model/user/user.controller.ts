@@ -17,7 +17,7 @@ export class UserController {
         return this.userService.User({id: id});
     }
 
-    @Patch('')
+    @Patch('update/:id')
     async updateUser(@Param('id') id: string): Promise<User> {
         return this.userService.updateUser({
             where: { id: id },
@@ -26,7 +26,7 @@ export class UserController {
     }
 
 
-    @Delete(':id')
+    @Delete('delete/:id')
     async deleteUser(@Param('id') id: string): Promise<User> {
         return this.userService.deleteUser({id: id});
     }
