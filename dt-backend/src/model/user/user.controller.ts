@@ -1,14 +1,17 @@
 import {Controller, Get, Post, Delete, Patch, Body, Param} from "@nestjs/common";
 import { User } from '../types/user.type'
 import { UserService} from "./user.service";
+import {UserDto} from "./dto/user.dto";
+import {UserUpdateDto} from "./dto/user-update.dto";
+import { Prisma } from "@prisma/client"
 
 @Controller('user')
 export class UserController {
 
     constructor(private readonly userService: UserService) {}
 
-    @Post('createuser')
-    async createUser (@Body() userData: {username: string; mail: string; password: string }): Promise<User> {
+    @Post('signup')
+    async createUser (@Body() userData: UserDto): Promise<User> {
         return this.userService.createUser(userData);
     }
 
@@ -19,12 +22,8 @@ export class UserController {
 
     @Patch('update/:id')
     async updateUser(@Param('id') id: string): Promise<User> {
-        return this.userService.updateUser({
-            where: { id: id },
-            data: { },
-        });
+        return this.userService.updateUser({},{id: id});
     }
-
 
     @Delete('delete/:id')
     async deleteUser(@Param('id') id: string): Promise<User> {

@@ -2,13 +2,14 @@ import {Injectable} from '@nestjs/common';
 import { prisma } from '../../main';
 import { User } from '../types/user.type';
 import { Prisma } from '@prisma/client'
+import {UserUpdateDto} from "./dto/user-update.dto";
 
 @Injectable()
 export class UserService {
 
-  async User(userWhereUniqueInput: Prisma.UserWhereUniqueInput): Promise<User> {
+  async User(id: Prisma.UserWhereUniqueInput): Promise<User> {
     return prisma.user.findUnique({
-      where: userWhereUniqueInput,
+      where: id,
       include: {
         audit: true,
         empire: true,
@@ -35,8 +36,7 @@ export class UserService {
     })
   }
 
-  async updateUser(params: {where: Prisma.UserWhereUniqueInput; data: Prisma.UserUpdateInput;}): Promise<User> {
-    const { data, where } = params;
+  async updateUser(data: UserUpdateDto["data"], where: UserUpdateDto["where"]): Promise<User> {
     return prisma.user.update({
       data,
       where,

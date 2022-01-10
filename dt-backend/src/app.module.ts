@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './model/user/user.module';
@@ -15,6 +14,8 @@ import { WarLogEntryModule } from './model/war-log-entry/war-log-entry.module';
 @Module({
   imports: [
     UserModule,
+
+    AuditLogModule,
 
     EmpireModule,
 
