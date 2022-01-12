@@ -1,6 +1,12 @@
-import {Prisma} from "@prisma/client";
+import {Empire} from "../../types/empire.type";
+import {AuditLog} from "@prisma/client";
 
 export class UserUpdateDto {
-    where: Prisma.UserWhereUniqueInput;
-    data: Prisma.UserUpdateInput;
+    id: number;
+    username: string;
+    password: string;
+    mail: string;
+    audit: AuditLog[];
+    empire: Empire;
+
 }

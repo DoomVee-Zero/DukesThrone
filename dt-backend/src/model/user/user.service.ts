@@ -3,17 +3,20 @@ import { prisma } from '../../main';
 import { User } from '../types/user.type';
 import { Prisma } from '@prisma/client'
 import {UserUpdateDto} from "./dto/user-update.dto";
+import {UserCreateDto} from "./dto/user-create.dto";
 
 @Injectable()
 export class UserService {
 
-  async User(id: Prisma.UserWhereUniqueInput): Promise<User> {
-    return prisma.user.findUnique({
-      where: id,
+  async getUser(id: string): Promise<User | null> {
+    return await prisma.user.findUnique({
+      where: {
+        id
+      },
       include: {
         audit: true,
         empire: true,
-      }
+      },
     });
   }
 
@@ -26,9 +29,9 @@ export class UserService {
     });
   }
 
-  async createUser(data: Prisma.UserCreateInput): Promise<User> {
+  async createUser(userCreateDto: UserCreateDto): Promise<User> {
     return prisma.user.create({
-      data,
+      data: userCreateDto,
       include: {
         audit: true,
         empire: true,
@@ -36,14 +39,21 @@ export class UserService {
     })
   }
 
-  async updateUser(data: UserUpdateDto["data"], where: UserUpdateDto["where"]): Promise<User> {
+  async updateUser(userUpdateDto: UserUpdateDto): Promise<User> {
     return prisma.user.update({
-      data,
-      where,
+      where: {id: userUpdateDto.id },
+      data: {
+        username: userUpdateDto.username,
+        id: String(userUpdateDto.id),
+        password: userUpdateDto.password,
+        mail: userUpdateDto.mail,
+        audit: userUpdateDto.audit,
+        empire: userUpdateDto.empire,
+      },
       include: {
         audit: true,
         empire: true,
-      }
+      },
     })
   }
 
