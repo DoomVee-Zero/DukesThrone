@@ -1,18 +1,17 @@
-import {Injectable} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { prisma } from '../../main';
 import { User } from '../types/user.type';
-import { Prisma } from '@prisma/client'
-import {UserUpdateDto} from "./dto/user-update.dto";
-import {UserCreateDto} from "./dto/user-create.dto";
-import {UserDeleteDto} from "./dto/user-delete.dto";
+import { Prisma } from '@prisma/client';
+import { UserUpdateDto } from './dto/user-update.dto';
+import { UserCreateDto } from './dto/user-create.dto';
+import { UserDeleteDto } from './dto/user-delete.dto';
 
 @Injectable()
 export class UserService {
-
   async getUser(id: string): Promise<User | null> {
     return await prisma.user.findUnique({
       where: {
-        id
+        id,
       },
       include: {
         audit: true,
@@ -37,12 +36,12 @@ export class UserService {
         audit: true,
         empire: true,
       },
-    })
+    });
   }
 
   async updateUser(userUpdateDto: UserUpdateDto): Promise<User> {
     return prisma.user.update({
-      where: {id: userUpdateDto.id },
+      where: { id: userUpdateDto.id },
       data: {
         username: userUpdateDto.username,
         password: userUpdateDto.password,
@@ -52,17 +51,16 @@ export class UserService {
         audit: true,
         empire: true,
       },
-    })
+    });
   }
 
   async deleteUser(id: string): Promise<User> {
     return prisma.user.delete({
-      where: {id},
+      where: { id },
       include: {
         audit: true,
         empire: true,
       },
-    })
+    });
   }
-
 }

@@ -1,3 +1,3 @@
 export class UserDeleteDto {
-    id: string;
+  id: string;
 }
