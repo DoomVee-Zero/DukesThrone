@@ -13,7 +13,7 @@ export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @Get(":id")
-    async getUserById(@Param(':id') id: string) {
+    async getUserById(@Param(':id')@Body() id: string) {
         return this.userService.getUser(id);
     }
 
@@ -23,12 +23,12 @@ export class UserController {
     }
 
     @Patch('update/:id')
-    async updateUser(@Param('id') userUpdateDto: UserUpdateDto): Promise<User> {
+    async updateUser(@Param('id')@Body() userUpdateDto: UserUpdateDto): Promise<User> {
         return this.userService.updateUser(userUpdateDto);
     }
 
     @Delete('delete/:id')
-    async deleteUser(@Param('id') id: string): Promise<User> {
+    async deleteUser(@Param('id')@Body() id: string): Promise<User> {
         return this.userService.deleteUser(id);
     }
 
