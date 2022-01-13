@@ -4,6 +4,7 @@ import { User } from '../types/user.type';
 import { Prisma } from '@prisma/client'
 import {UserUpdateDto} from "./dto/user-update.dto";
 import {UserCreateDto} from "./dto/user-create.dto";
+import {UserDeleteDto} from "./dto/user-delete.dto";
 
 @Injectable()
 export class UserService {
@@ -54,9 +55,9 @@ export class UserService {
     })
   }
 
-  async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<User> {
+  async deleteUser(id: string): Promise<User> {
     return prisma.user.delete({
-      where,
+      where: {id},
       include: {
         audit: true,
         empire: true,
