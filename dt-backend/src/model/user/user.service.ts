@@ -44,11 +44,8 @@ export class UserService {
       where: {id: userUpdateDto.id },
       data: {
         username: userUpdateDto.username,
-        id: String(userUpdateDto.id),
         password: userUpdateDto.password,
         mail: userUpdateDto.mail,
-        audit: userUpdateDto.audit,
-        empire: userUpdateDto.empire,
       },
       include: {
         audit: true,
