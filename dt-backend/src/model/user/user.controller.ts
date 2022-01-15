@@ -11,9 +11,6 @@ import { User } from '../types/user.type';
 import { UserService } from './user.service';
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
-import { Prisma } from '@prisma/client';
-import { UserDto } from './dto/user.dto';
-import { UserDeleteDto } from './dto/user-delete.dto';
 
 @Controller('user')
 export class UserController {
