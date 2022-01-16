@@ -10,7 +10,6 @@ generator client {
 model User {
   id       String     @id @default(uuid())
   username String
-  password String
   mail     String
   audit    AuditLog[]
   empire   Empire?
@@ -66,17 +65,13 @@ model Empire {
 model WarLogEntry {
   id         String @id @default(uuid())
   battleType String @map("battle_type")
-
   attackerID String @map("attacker_id")
   attacker   Empire @relation("empire_attacks", fields: [attackerID], references: [id])
-
   defenderID String @map("defender_id")
   defender   Empire @relation("empire_defenses", fields: [defenderID], references: [id])
-
   turns   Int
   details Json
 }
-
 model Structure {
   id         String @id @default(uuid())
   empireId   String @map("empire_id")

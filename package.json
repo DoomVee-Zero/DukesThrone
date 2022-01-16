@@ -1,5 +1,5 @@
 {
-  "dependencies": {
-    "axios": "^0.24.0"
+  "devDependencies": {
+    "prisma": "^3.7.0"
   }
 }

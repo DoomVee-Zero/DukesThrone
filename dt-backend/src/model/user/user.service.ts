@@ -1,18 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { prisma } from '../../main';
 import { User } from '../types/user.type';
 import { Prisma } from '@prisma/client';
-import { UserUpdateDto } from './dto/user-update.dto';
-import { UserCreateDto } from './dto/user-create.dto';
-import { UserDeleteDto } from './dto/user-delete.dto';
 
 @Injectable()
 export class UserService {
-  async getUser(id: string): Promise<User | null> {
-    return await prisma.user.findUnique({
-      where: {
-        id,
-      },
+  async User(userWhereUniqueInput: Prisma.UserWhereUniqueInput): Promise<User> {
+    return prisma.user.findUnique({
+      where: userWhereUniqueInput,
       include: {
         audit: true,
         empire: true,
@@ -29,9 +24,9 @@ export class UserService {
     });
   }
 
-  async createUser(userCreateDto: UserCreateDto): Promise<User> {
+  async createUser(data: Prisma.UserCreateInput): Promise<User> {
     return prisma.user.create({
-      data: userCreateDto,
+      data,
       include: {
         audit: true,
         empire: true,
@@ -39,14 +34,14 @@ export class UserService {
     });
   }
 
-  async updateUser(userUpdateDto: UserUpdateDto): Promise<User> {
+  async updateUser(params: {
+    where: Prisma.UserWhereUniqueInput;
+    data: Prisma.UserUpdateInput;
+  }): Promise<User> {
+    const { data, where } = params;
     return prisma.user.update({
-      where: { id: userUpdateDto.id },
-      data: {
-        username: userUpdateDto.username,
-        password: userUpdateDto.password,
-        mail: userUpdateDto.mail,
-      },
+      data,
+      where,
       include: {
         audit: true,
         empire: true,
@@ -54,9 +49,9 @@ export class UserService {
     });
   }
 
-  async deleteUser(id: string): Promise<User> {
+  async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<User> {
     return prisma.user.delete({
-      where: { id },
+      where,
       include: {
         audit: true,
         empire: true,
