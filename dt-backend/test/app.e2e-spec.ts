@@ -18,21 +18,13 @@ describe('AppController (e2e)', () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
         AppModule,
-
         UserModule,
-
         AuditLogModule,
-
         EmpireModule,
-
         LoggerModule,
-
         StructureModule,
-
         FinanceModule,
-
         VaultTransactionModule,
-
         WarLogEntryModule,
       ],
     }).compile();
