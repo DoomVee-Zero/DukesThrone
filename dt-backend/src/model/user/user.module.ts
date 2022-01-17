@@ -5,7 +5,7 @@ import { EmpireModule } from '../empire/empire.module';
 import { AuditLogModule } from '../audit-log/audit-log.module';
 
 @Module({
-  imports: [forwardRef(() => EmpireModule), forwardRef(() => AuditLogModule)],
+  imports: [forwardRef(() => EmpireModule)],
   providers: [UserService],
   controllers: [UserController],
 })

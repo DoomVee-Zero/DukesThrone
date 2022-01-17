@@ -18,7 +18,6 @@ import { StructureService } from '../src/model/structure/structure.service';
 import { UserService } from '../src/model/user/user.service';
 import { VaultTransactionService } from '../src/model/vault-transaction/vault-transaction.service';
 import { WarLogEntryService } from '../src/model/war-log-entry/war-log-entry.service';
-import { User } from '../src/model/types/user.type';
 import { LoggerService } from '../src/services/logger/logger.service';
 
 describe('AppController (e2e)', () => {
@@ -36,11 +35,11 @@ describe('AppController (e2e)', () => {
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
-        AppModule,
         UserModule,
         AuditLogModule,
         EmpireModule,
         LoggerModule,
+        AppModule,
         StructureModule,
         FinanceModule,
         VaultTransactionModule,
