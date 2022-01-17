@@ -14,19 +14,12 @@ import { WarLogEntryModule } from './model/war-log-entry/war-log-entry.module';
 @Module({
   imports: [
     UserModule,
-
     AuditLogModule,
-
     EmpireModule,
-
     LoggerModule,
-
     StructureModule,
-
     FinanceModule,
-
     VaultTransactionModule,
-
     WarLogEntryModule,
   ],
   controllers: [AppController],
