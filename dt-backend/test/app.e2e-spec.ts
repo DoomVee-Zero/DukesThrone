@@ -39,7 +39,6 @@ describe('AppController (e2e)', () => {
         AuditLogModule,
         EmpireModule,
         LoggerModule,
-        AppModule,
         StructureModule,
         FinanceModule,
         VaultTransactionModule,
