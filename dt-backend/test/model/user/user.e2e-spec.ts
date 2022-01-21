@@ -8,9 +8,8 @@ import { UserService } from '../../../src/model/user/user.service';
 
 describe('UserController e2e', () => {
   let app: INestApplication;
-  let userModule: UserModule;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [UserModule],
     }).compile();
@@ -18,6 +17,11 @@ describe('UserController e2e', () => {
     await app.init();
   });
 
-  //TODO: IT Block
-  //it('/ (GET) ')
+  it('/GET ', () => {
+    return request(app.getHttpServer()).get('/user').expect(200).expect('[]');
+  });
+
+  it('/user/signUp ', () => {
+    return request(app.getHttpServer()).get('/user/signUp').expect(200);
+  });
 });

@@ -8,7 +8,7 @@ export class AppService {
     this.logger.info('{name} started!', { name: AppService.name });
   }
 
-  getHello(): string {
+  async getHello(): Promise<string> {
     return 'Hello World!';
   }
 }

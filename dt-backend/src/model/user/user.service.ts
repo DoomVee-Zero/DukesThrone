@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { prisma } from '../../prisma';
-import { Empire} from "../types/empire.type";
+import { Empire } from '../types/empire.type';
 import { User } from '../types/user.type';
 import { Prisma } from '@prisma/client';
-import {UserCreateDto} from "./dto/user-create.dto";
-import {UserUpdateDto} from "./dto/user-update.dto";
-import {UserDto} from "./dto/user.dto";
+import { UserCreateDto } from './dto/user-create.dto';
+import { UserUpdateDto } from './dto/user-update.dto';
+import { UserDto } from './dto/user.dto';
 
 @Injectable()
 export class UserService {
-  async User(id: string): Promise<User> {
+  async getUser(id: string): Promise<User> {
     return await prisma.user.findUnique({
       where: { id },
       include: {
@@ -46,7 +46,7 @@ export class UserService {
         username: userUpdateDto.username,
         password: userUpdateDto.password,
         mail: userUpdateDto.mail,
-    },
+      },
       include: {
         audit: true,
         empire: true,
@@ -54,9 +54,9 @@ export class UserService {
     });
   }
 
-  async deleteUser(where: Prisma.UserWhereUniqueInput): Promise<User> {
+  async deleteUser(id: string): Promise<User> {
     return await prisma.user.delete({
-      where,
+      where: { id: id },
       include: {
         audit: true,
         empire: true,
