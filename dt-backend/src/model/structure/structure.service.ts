@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { prisma } from '../../main';
+import { prisma } from '../../prisma';
 import { Structure } from '../types/structure.type';
 
 @Injectable()

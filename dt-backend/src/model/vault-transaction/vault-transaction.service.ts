@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { prisma } from '../../main';
+import { prisma } from '../../prisma';
 import { VaultTransaction } from '../types/vault-transaction.type';
 import { Prisma } from '@prisma/client';
 
