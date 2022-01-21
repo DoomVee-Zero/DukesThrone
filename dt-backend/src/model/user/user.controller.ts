@@ -10,6 +10,7 @@ import {
 import { User } from '../types/user.type';
 import { UserService } from './user.service';
 import {UserCreateDto} from "./dto/user-create.dto";
+import {UserUpdateDto} from "./dto/user-update.dto";
 
 @Controller('user')
 export class UserController {
@@ -26,8 +27,8 @@ export class UserController {
   }
 
   @Patch('update/:id')
-  async updateUser(@Param('id') id: string): Promise<User> {
-    return this.userService.updateUser(id);
+  async updateUser(@Param('id') userUpdateDto: UserUpdateDto): Promise<User> {
+    return this.userService.updateUser(userUpdateDto);
   }
 
   @Delete('delete/:id')
