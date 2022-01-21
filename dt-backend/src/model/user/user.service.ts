@@ -2,12 +2,15 @@ import { Inject, Injectable } from '@nestjs/common';
 import { prisma } from '../../prisma';
 import { User } from '../types/user.type';
 import { Prisma } from '@prisma/client';
+import {UserCreateDto} from "./dto/user-create.dto";
+import {UserUpdateDto} from "./dto/user-update.dto";
+import {UserDto} from "./dto/user.dto";
 
 @Injectable()
 export class UserService {
-  async User(userWhereUniqueInput: Prisma.UserWhereUniqueInput): Promise<User> {
+  async User(id: string): Promise<User> {
     return prisma.user.findUnique({
-      where: userWhereUniqueInput,
+      where: { id },
       include: {
         audit: true,
         empire: true,
@@ -24,7 +27,7 @@ export class UserService {
     });
   }
 
-  async createUser(data: Prisma.UserCreateInput): Promise<User> {
+  async createUser(data: UserCreateDto): Promise<User> {
     return prisma.user.create({
       data,
       include: {
@@ -34,14 +37,10 @@ export class UserService {
     });
   }
 
-  async updateUser(params: {
-    where: Prisma.UserWhereUniqueInput;
-    data: Prisma.UserUpdateInput;
-  }): Promise<User> {
-    const { data, where } = params;
+  async updateUser(userUpdateDto: UserUpdateDto): Promise<User> {
     return prisma.user.update({
-      data,
-      where,
+      where: userUpdateDto.id,
+      data: userUpdateDto,
       include: {
         audit: true,
         empire: true,
