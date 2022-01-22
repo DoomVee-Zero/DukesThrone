@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "prisma": "^3.7.0"
+  },
+  "dependencies": {
+    "jest-mock": "^27.4.6"
   }
 }

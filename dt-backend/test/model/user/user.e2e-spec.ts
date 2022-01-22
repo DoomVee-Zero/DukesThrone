@@ -2,9 +2,13 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserModule } from '../../../src/model/user/user.module';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
+import { ModuleMocker } from 'jest-mock';
+import { User } from '../../../src/model/types/user.type';
 
 describe('UserController e2e', () => {
+  const moduleMocker = new ModuleMocker(global);
   let app: INestApplication;
+  let user: User;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -20,9 +24,12 @@ describe('UserController e2e', () => {
 
   it('/user/signUp ', () => {
     return request(app.getHttpServer())
-      .get('/user/signUp')
-      .expect(200)
-      .expect('');
+      .post('/user/signUp')
+      .field(
+        'user',
+        'username: "john", password: "john", mail: "john@email.com"',
+      )
+      .attach('', '');
   });
 
   it('/update', () => {
