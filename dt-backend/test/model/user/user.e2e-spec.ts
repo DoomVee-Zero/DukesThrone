@@ -3,12 +3,10 @@ import { UserModule } from '../../../src/model/user/user.module';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { ModuleMocker } from 'jest-mock';
-import { User } from '../../../src/model/types/user.type';
 
 describe('UserController e2e', () => {
   const moduleMocker = new ModuleMocker(global);
   let app: INestApplication;
-  let user: User;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -23,13 +21,14 @@ describe('UserController e2e', () => {
   });
 
   it('/user/signUp ', () => {
+    const user = {
+      username: 'john',
+      password: 'john',
+      mail: 'john@john.com',
+    };
     return request(app.getHttpServer())
       .post('/user/signUp')
-      .field(
-        'user',
-        'username: "john", password: "john", mail: "john@email.com"',
-      )
-      .attach('', '');
+      .send(user);
   });
 
   it('/update', () => {
