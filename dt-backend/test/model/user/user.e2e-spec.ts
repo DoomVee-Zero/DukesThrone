@@ -2,9 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserModule } from '../../../src/model/user/user.module';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
-import { AppModule } from '../../../src/app.module';
-import { UserController } from '../../../src/model/user/user.controller';
-import { UserService } from '../../../src/model/user/user.service';
 
 describe('UserController e2e', () => {
   let app: INestApplication;
@@ -22,6 +19,23 @@ describe('UserController e2e', () => {
   });
 
   it('/user/signUp ', () => {
-    return request(app.getHttpServer()).get('/user/signUp').expect(200);
+    return request(app.getHttpServer())
+      .get('/user/signUp')
+      .expect(200)
+      .expect('');
+  });
+
+  it('/update', () => {
+    return request(app.getHttpServer())
+      .get('/user/update')
+      .expect(200)
+      .expect('');
+  });
+
+  it('delete', () => {
+    return request(app.getHttpServer())
+      .get('/user/delete')
+      .expect(200)
+      .expect('');
   });
 });
