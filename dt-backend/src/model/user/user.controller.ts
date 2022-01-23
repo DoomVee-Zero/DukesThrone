@@ -6,6 +6,7 @@ import {
   Patch,
   Body,
   Param,
+  Put,
 } from '@nestjs/common';
 import { User } from '../types/user.type';
 import { UserService } from './user.service';
@@ -32,7 +33,11 @@ export class UserController {
   }
 
   @Patch('update/:id')
-  async updateUser(@Param('id') userUpdateDto: UserUpdateDto): Promise<User> {
+  async updateUser(
+    @Param('id') id: string,
+    @Body() userUpdateDto: UserUpdateDto,
+  ): Promise<User> {
+    userUpdateDto.id = id;
     return this.userService.updateUser(userUpdateDto);
   }
 

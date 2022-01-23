@@ -2,10 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserModule } from '../../../src/model/user/user.module';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
-import { ModuleMocker } from 'jest-mock';
 
 describe('UserController e2e', () => {
-  const moduleMocker = new ModuleMocker(global);
   let app: INestApplication;
 
   beforeAll(async () => {
@@ -16,32 +14,47 @@ describe('UserController e2e', () => {
     await app.init();
   });
 
-  it('/GET ', () => {
-    return request(app.getHttpServer()).get('/user').expect(200).expect('[]');
-  });
-
-  it('/user/signUp ', () => {
+  test('/update/:id', async () => {
+    // create user
     const user = {
       username: 'john',
       password: 'john',
       mail: 'john@john.com',
     };
-    return request(app.getHttpServer())
+    //send create request for john
+    const res = await request(app.getHttpServer())
       .post('/user/signUp')
       .send(user);
+
+    //update user john to joe
+    const updateUser = {
+      username: 'joe',
+      password: 'joe',
+      mail: 'joe@joe.com',
+    };
+    const update = await request(app.getHttpServer())
+      .patch('/user/update/' + res.body.id)
+      .send(updateUser);
+
+    //delete user
+    await request(app.getHttpServer())
+      .delete('/user/delete/' + res.body.id)
+      .send(res.body.id);
   });
 
-  it('/update', () => {
+  test('delete/:id', async () => {
+    const user = {
+      username: 'john',
+      password: 'john',
+      mail: 'john@john.com',
+    };
+    const res = await request(app.getHttpServer())
+      .post('/user/signUp')
+      .send(user)
+      .expect(201);
     return request(app.getHttpServer())
-      .get('/user/update')
-      .expect(200)
-      .expect('');
-  });
-
-  it('delete', () => {
-    return request(app.getHttpServer())
-      .get('/user/delete')
-      .expect(200)
-      .expect('');
+      .delete('/user/delete/' + res.body.id)
+      .send(res.body.id)
+      .expect(200);
   });
 });

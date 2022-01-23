@@ -42,7 +42,6 @@ export class UserService {
     return await prisma.user.update({
       where: { id: userUpdateDto.id },
       data: {
-        id: userUpdateDto.id,
         username: userUpdateDto.username,
         password: userUpdateDto.password,
         mail: userUpdateDto.mail,
@@ -56,7 +55,7 @@ export class UserService {
 
   async deleteUser(id: string): Promise<User> {
     return await prisma.user.delete({
-      where: { id: id },
+      where: { id },
       include: {
         audit: true,
         empire: true,
