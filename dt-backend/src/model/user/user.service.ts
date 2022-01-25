@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { prisma } from '../../prisma';
 import { Empire } from '../types/empire.type';
 import { User } from '../types/user.type';
-import { Prisma } from '@prisma/client';
+import { AuditLog, Prisma } from '@prisma/client';
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
 import { UserDto } from './dto/user.dto';
+import { AuditLogCreateDto } from './dto/audit-log-create.dto';
 
 @Injectable()
 export class UserService {
@@ -59,6 +60,18 @@ export class UserService {
       include: {
         audit: true,
         empire: true,
+      },
+    });
+  }
+
+  async createAuditEntry(
+    data: AuditLogCreateDto,
+    userId: string,
+  ): Promise<AuditLog> {
+    return prisma.auditLog.create({
+      data,
+      include: {
+        user: true,
       },
     });
   }

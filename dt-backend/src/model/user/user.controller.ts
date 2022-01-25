@@ -6,12 +6,13 @@ import {
   Patch,
   Body,
   Param,
-  Put,
 } from '@nestjs/common';
 import { User } from '../types/user.type';
 import { UserService } from './user.service';
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
+import { AuditLog } from '../types/audit-log.type';
+import { AuditLogCreateDto } from './dto/audit-log-create.dto';
 
 @Controller('user')
 export class UserController {
@@ -44,5 +45,13 @@ export class UserController {
   @Delete('delete/:id')
   async deleteUser(@Param('id') id: string): Promise<User> {
     return this.userService.deleteUser(id);
+  }
+
+  @Post(':id/audit')
+  async createAuditEntry(
+    @Param('userId') id: string,
+    @Body() auditLogCreateDto: AuditLogCreateDto,
+  ): Promise<AuditLog> {
+    return this.userService.createAuditEntry(auditLogCreateDto, id);
   }
 }
