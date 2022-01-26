@@ -51,10 +51,24 @@ describe('UserController e2e', () => {
     const res = await request(app.getHttpServer())
       .post('/user/signUp')
       .send(user)
-      .expect(201);
+      .expect(200);
     return request(app.getHttpServer())
       .delete('/user/delete/' + res.body.id)
       .send(res.body.id)
       .expect(200);
+  });
+
+  test('/user/:id/audit', async () => {
+    //create user to add audit to
+    const user = {
+      username: 'john',
+      password: 'john',
+      mail: 'john@john.com',
+    };
+    const res = await request(app.getHttpServer())
+      .post('/user/signUp')
+      .send(user)
+      .expect(200);
+    res.body.audit.append()
   });
 });
