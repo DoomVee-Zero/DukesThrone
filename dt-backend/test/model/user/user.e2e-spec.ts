@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserModule } from '../../../src/model/user/user.module';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
+import * as assert from "assert";
 
 describe('UserController e2e', () => {
   let app: INestApplication;
@@ -36,6 +37,8 @@ describe('UserController e2e', () => {
       .patch('/user/update/' + res.body.id)
       .send(updateUser);
 
+    assert((update.body.id = res.body.id));
+
     //delete user
     await request(app.getHttpServer())
       .delete('/user/delete/' + res.body.id)
@@ -51,10 +54,9 @@ describe('UserController e2e', () => {
     const res = await request(app.getHttpServer())
       .post('/user/signUp')
       .send(user)
-      .expect(200);
+      .expect(201);
     return request(app.getHttpServer())
       .delete('/user/delete/' + res.body.id)
-      .send(res.body.id)
       .expect(200);
   });
 
@@ -69,6 +71,6 @@ describe('UserController e2e', () => {
       .post('/user/signUp')
       .send(user)
       .expect(200);
-    res.body.audit.append()
+    res.body.audit.append();
   });
 });
