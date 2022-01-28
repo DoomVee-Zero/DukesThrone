@@ -5,6 +5,7 @@ import { AuditLog, Prisma } from '@prisma/client';
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
 import { AuditLogCreateDto } from './dto/audit-log-create.dto';
+import { GetAuditLogDto } from './dto/get-audit-log.dto';
 
 @Injectable()
 export class UserService {
@@ -78,6 +79,18 @@ export class UserService {
         client: auditLogCreateDto.client,
         i18nKey: auditLogCreateDto.i18nKey,
       },
+    });
+  }
+
+  async getUserAuditLog(
+    getAuditLogDto: GetAuditLogDto,
+    userId: string,
+  ): Promise<AuditLog[]> {
+    const user = prisma.user.findUnique({
+      where: { id: userId },
+    });
+    return user.audit({
+      where: { id: userId },
     });
   }
 }

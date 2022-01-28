@@ -13,6 +13,7 @@ import { UserCreateDto } from './dto/user-create.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
 import { AuditLog } from '../types/audit-log.type';
 import { AuditLogCreateDto } from './dto/audit-log-create.dto';
+import {GetAuditLogDto} from "./dto/get-audit-log.dto";
 
 @Controller('user')
 export class UserController {
@@ -53,5 +54,13 @@ export class UserController {
     @Body() auditLogCreateDto: AuditLogCreateDto,
   ): Promise<AuditLog> {
     return this.userService.createAuditEntry(auditLogCreateDto, id);
+  }
+
+  @Get(':id/audit')
+  async getAuditLog(
+    @Param('userId') userId: string,
+    @Body() getAuditDto: GetAuditLogDto,
+  ): Promise<AuditLog[]> {
+    return this.userService.getUserAuditLog(getAuditDto, userId);
   }
 }
