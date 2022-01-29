@@ -35,4 +35,17 @@ export class UserController {
   async deleteUser(@Param('id') id: string): Promise<User> {
     return this.userService.deleteUser({ id: id });
   }
+
+  @Get(':id/audit/:audit-id')
+  async getSingleAuditEntry(
+    @Param('userId') userId: string,
+    @Param('auditId') auditId: string,
+    @Body() getAuditDto: GetAuditLogDto,
+  ): Promise<AuditLog> {
+    return this.userService.getUserSingleAuditEntry(
+      userId,
+      auditId,
+      getAuditDto,
+    );
+  }
 }
