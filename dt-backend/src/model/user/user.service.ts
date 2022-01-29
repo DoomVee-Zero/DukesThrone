@@ -93,4 +93,15 @@ export class UserService {
       where: { id: userId },
     });
   }
+
+  async getUserSingleAuditEntry(
+    userId: string,
+    auditId: string,
+    getAuditLog: GetAuditLogDto,
+  ): Promise<AuditLog> {
+    const user = prisma.user.findUnique({
+      where: { id: userId },
+    });
+    return user.audit[];
+  }
 }

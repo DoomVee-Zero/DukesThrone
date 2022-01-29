@@ -63,4 +63,17 @@ export class UserController {
   ): Promise<AuditLog[]> {
     return this.userService.getUserAuditLog(getAuditDto, userId);
   }
+
+  @Get(':id/audit/:audit-id')
+  async getSingleAuditEntry(
+    @Param('userId') userId: string,
+    @Param('auditId') auditId: string,
+    @Body() getAuditDto: GetAuditLogDto,
+  ): Promise<AuditLog> {
+    return this.userService.getUserSingleAuditEntry(
+      userId,
+      auditId,
+      getAuditDto,
+    );
+  }
 }

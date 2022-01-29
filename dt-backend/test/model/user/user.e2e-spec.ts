@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserModule } from '../../../src/model/user/user.module';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
-import * as assert from "assert";
+import * as assert from 'assert';
 
 describe('UserController e2e', () => {
   let app: INestApplication;
@@ -70,7 +70,13 @@ describe('UserController e2e', () => {
     const res = await request(app.getHttpServer())
       .post('/user/signUp')
       .send(user)
-      .expect(200);
-    res.body.audit.append();
+      .expect(201);
+
+    //create and add audit message
+    const audit = await request(app.getHttpServer())
+        .post('/user/' + res.body.id + '/audit',).send();
+
+    //delete user
+    request(app.getHttpServer()).delete('/user/delete/' + res.body.id);
   });
 });
