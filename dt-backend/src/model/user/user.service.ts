@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { prisma } from '../../prisma';
 import { User } from '../types/user.type';
-import { AuditLog, Prisma } from '@prisma/client';
+import { AuditLog } from '../types/audit-log.type';
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
 import { AuditLogCreateDto } from './dto/audit-log-create.dto';
@@ -71,7 +71,7 @@ export class UserService {
       data: {
         user: {
           connect: {
-            id: userId,
+             id: userId,
           },
         },
         ip: auditLogCreateDto.ip,
@@ -97,11 +97,17 @@ export class UserService {
   async getUserSingleAuditEntry(
     userId: string,
     auditId: string,
-    getAuditLog: GetAuditLogDto,
   ): Promise<AuditLog> {
-    const user = prisma.user.findUnique({
-      where: { id: userId },
+   return prisma.auditLog.findUnique({
+     where: {
+         id: auditId
+       }
+   })
+  }
+
+  async deleteEntireAuditLog(userId: string): Promise<{count: number}> {
+    return prisma.auditLog.deleteMany({
+      where: {id: userId},
     });
-    return user.audit[];
   }
 }

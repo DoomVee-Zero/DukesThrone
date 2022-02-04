@@ -9,12 +9,20 @@ import {
 } from '@nestjs/common';
 import { User } from '../types/user.type';
 import { UserService } from './user.service';
-import {UserCreateDto} from "./dto/user-create.dto";
-import {UserUpdateDto} from "./dto/user-update.dto";
+import { UserCreateDto } from './dto/user-create.dto';
+import { UserUpdateDto } from './dto/user-update.dto';
+import { AuditLog } from '../types/audit-log.type';
+import { AuditLogCreateDto } from './dto/audit-log-create.dto';
+import {GetAuditLogDto} from "./dto/get-audit-log.dto";
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Get()
+  async getUsers(): Promise<User[]> {
+    return this.userService.getUsers();
+  }
 
   @Post('signUp')
   async signUp(@Body() userData: UserCreateDto): Promise<User> {
@@ -23,29 +31,53 @@ export class UserController {
 
   @Get(':id')
   async getUserById(@Param('id') id: string): Promise<User> {
-    return this.userService.User(id);
+    return this.userService.getUser(id);
   }
 
   @Patch('update/:id')
-  async updateUser(@Param('id') userUpdateDto: UserUpdateDto): Promise<User> {
+  async updateUser(
+      @Param('id') id: string,
+      @Body() userUpdateDto: UserUpdateDto,
+  ): Promise<User> {
+    userUpdateDto.id = id;
     return this.userService.updateUser(userUpdateDto);
   }
 
   @Delete('delete/:id')
   async deleteUser(@Param('id') id: string): Promise<User> {
-    return this.userService.deleteUser({ id: id });
+    return this.userService.deleteUser(id);
+  }
+
+  @Post(':id/audit')
+  async createAuditEntry(
+      @Param('id') id: string,
+      @Body() auditLogCreateDto: AuditLogCreateDto,
+  ): Promise<AuditLog> {
+    return this.userService.createAuditEntry(auditLogCreateDto, id);
+  }
+
+  @Get(':id/audit')
+  async getAuditLog(
+      @Param('userId') userId: string,
+      @Body() getAuditDto: GetAuditLogDto,
+  ): Promise<AuditLog[]> {
+    return this.userService.getUserAuditLog(getAuditDto, userId);
   }
 
   @Get(':id/audit/:audit-id')
   async getSingleAuditEntry(
-    @Param('userId') userId: string,
-    @Param('auditId') auditId: string,
-    @Body() getAuditDto: GetAuditLogDto,
+      @Param('userId') userId: string,
+      @Param('auditId') auditId: string,
+      @Body() getAuditDto: GetAuditLogDto,
   ): Promise<AuditLog> {
     return this.userService.getUserSingleAuditEntry(
-      userId,
-      auditId,
-      getAuditDto,
+        userId,
+        auditId,
     );
+  }
+
+  @Delete(':id/audit/delete')
+  async deleteEntireAuditLog(@Param('userid') userId: string): Promise<{ count: number }> {
+    return this.userService.deleteEntireAuditLog(userId);
   }
 }

@@ -37,7 +37,7 @@ describe('UserController e2e', () => {
       .patch('/user/update/' + res.body.id)
       .send(updateUser);
 
-    assert((update.body.id = res.body.id));
+    assert((update.body.id == res.body.id));
 
     //delete user
     await request(app.getHttpServer())
@@ -72,11 +72,30 @@ describe('UserController e2e', () => {
       .send(user)
       .expect(201);
 
-    //create and add audit message
-    const audit = await request(app.getHttpServer())
-        .post('/user/' + res.body.id + '/audit',).send();
+    const userId = res.body.id;
 
-    //delete user
-    request(app.getHttpServer()).delete('/user/delete/' + res.body.id);
+    //create and add audit entry
+    const auditEntry = {
+      userId: userId,
+      ip: "127.0.0.1",
+      time: new Date(),
+      client: "some random os",
+      i18nKey: "i18nkey",
+    }
+    console.log(auditEntry);
+    console.log(res.body);
+
+    const audit = await request(app.getHttpServer())
+        .post('/user/' + userId + '/audit',)
+        .send(auditEntry);
+
+    //get updated user
+    const userWithAudit = await request(app.getHttpServer()).get('/user/' + userId).send(userId);
+
+    console.log(userWithAudit.body);
+
+    //delete user and audit entry
+    request(app.getHttpServer()).delete('/user/:id/audit').send()
+    return request(app.getHttpServer()).delete('/user/delete/' + res.body.id);
   });
 });
