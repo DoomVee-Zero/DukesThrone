@@ -86,16 +86,19 @@ describe('UserController e2e', () => {
     console.log(res.body);
 
     const audit = await request(app.getHttpServer())
-        .post('/user/' + userId + '/audit',)
+        .post('/user/' + userId + '/audit')
         .send(auditEntry);
 
     //get updated user
-    const userWithAudit = await request(app.getHttpServer()).get('/user/' + userId).send(userId);
+    const userWithAudit = await request(app.getHttpServer()).get('/user/' + userId);
 
     console.log(userWithAudit.body);
 
     //delete user and audit entry
-    request(app.getHttpServer()).delete('/user/:id/audit').send()
-    return request(app.getHttpServer()).delete('/user/delete/' + res.body.id);
+    const userAfterDeleteAudit = await request(app.getHttpServer()).delete('/user/' + userId + '/audit/delete').send(userId);
+
+    console.log(userAfterDeleteAudit.body);
+
+    return request(app.getHttpServer()).delete('/user/delete/' + userId);
   });
 });
