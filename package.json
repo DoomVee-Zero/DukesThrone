@@ -3,6 +3,8 @@
     "prisma": "^3.7.0"
   },
   "dependencies": {
-    "jest-mock": "^27.4.6"
+    "jest-mock": "^27.4.6",
+    "nuxt-buefy": "^0.4.14",
+    "vue": "^2.6.11"
   }
 }
